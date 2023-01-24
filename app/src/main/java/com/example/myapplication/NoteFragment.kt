@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -67,12 +68,22 @@ class NoteFragment : Fragment() {
         )
         val linearLayout = view as LinearLayout
         for ( i in 0 .. arrayData.size-1){
-            val textView = TextView(context)
+          /*  val textView = TextView(context)
             textView.text = arrayData[i].name
-            textView.textSize = 18.0F;
-            linearLayout.addView(textView)
-            textView.setOnClickListener {
+            textView.textSize = 18.0F;*/
+
+            val textViewHeader = LayoutInflater.from(context).inflate(R.layout.note_item_layout, null) as LinearLayout
+
+            textViewHeader.findViewById<TextView>(R.id.idHeader).text = arrayData[i].name
+            textViewHeader.findViewById<TextView>(R.id.dateNote).text = arrayData[i].date
+
+            linearLayout.addView(textViewHeader)
+            textViewHeader.setOnClickListener {
                 showInfoOrient(i)
+            }
+            textViewHeader.setOnLongClickListener {
+                Toast.makeText(context, "Удалить запись?", Toast.LENGTH_SHORT).show()
+                true
             }
         }
     }
