@@ -1,11 +1,10 @@
 package com.example.myapplication
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,7 +34,29 @@ class InfoNoteFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_info_note, container, false)
+    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.head_menu, menu);
+        val itemSearch = menu.findItem(R.id.head_search)
+        if(itemSearch != null)
+            itemSearch.isVisible = false
+        val itemSort = menu.findItem(R.id.head_sort)
+        if(itemSort != null)
+            itemSort.isVisible = false
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.frag_delete -> {
+                Toast.makeText(context, "Delete", Toast.LENGTH_SHORT ).show()
+            }
+            R.id.frag_receive -> {
+                Toast.makeText(context, "Receive", Toast.LENGTH_SHORT ).show()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     companion object {
