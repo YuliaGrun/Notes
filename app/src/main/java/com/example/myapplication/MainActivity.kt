@@ -48,6 +48,7 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> { Toast.makeText(this, "Какие-то настройки", Toast.LENGTH_SHORT ).show()}
             R.id.head_search -> {
                 Toast.makeText(this, "Поиск", Toast.LENGTH_SHORT ).show()
+                Toast.makeText(this, "Поиск", Toast.LENGTH_SHORT ).show()
             }
             R.id.head_sort -> {
                 Toast.makeText(this, "Sort", Toast.LENGTH_SHORT ).show()
