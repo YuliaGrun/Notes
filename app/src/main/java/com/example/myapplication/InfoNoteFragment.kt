@@ -5,6 +5,8 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.material.snackbar.Snackbar
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -50,7 +52,7 @@ class InfoNoteFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.frag_delete -> {
-                Toast.makeText(context, "Delete", Toast.LENGTH_SHORT ).show()
+                Snackbar.make((activity as MainActivity).findViewById(R.id.frag_delete), "Тест SnackBar", Snackbar.LENGTH_SHORT).show();
             }
             R.id.frag_receive -> {
                 Toast.makeText(context, "Receive", Toast.LENGTH_SHORT ).show()
@@ -81,9 +83,8 @@ class InfoNoteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val arrayData = arrayOf(Note("note1", "Some text1", "01.01.2023"),
-            Note("note2", "Some text2", "02.01.2023"),
-            Note("note3", "Some text3", "03.01.2023"),)
+        val objMAin = MainActivity();
+        val arrayData = objMAin.getArrayNotes()
 
         if(arguments != null){
             val index:Int = requireArguments().getInt("index")

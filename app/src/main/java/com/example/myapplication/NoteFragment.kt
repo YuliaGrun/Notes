@@ -1,12 +1,14 @@
 package com.example.myapplication
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -63,10 +65,9 @@ class NoteFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val arrayData = arrayOf(Note("note1", "Some text1", "01.01.2023"),
-            Note("note2", "Some text2", "02.01.2023"),
-            Note("note3", "Some text3", "03.01.2023"),
-        )
+        val objMAin = MainActivity();
+        val arrayData = objMAin.getArrayNotes()
+
         val linearLayout = view as LinearLayout
         for ( i in 0 .. arrayData.size-1){
           /*  val textView = TextView(context)
@@ -83,7 +84,17 @@ class NoteFragment : Fragment() {
                 showInfoOrient(i)
             }
             textViewHeader.setOnLongClickListener {
-                Toast.makeText(context, "Удалить запись?", Toast.LENGTH_SHORT).show()
+                AlertDialog.Builder(context)
+                    .setTitle(R.string.title_del)
+                    .setMessage(R.string.del_quest)
+                    .setPositiveButton(R.string.but_yes) { _, _ ->
+                        Toast.makeText(context, R.string.but_yes, Toast.LENGTH_SHORT).show()
+                    }
+                    .setNegativeButton(R.string.but_no) { _, _ ->
+                        Toast.makeText( context, R.string.but_no, Toast.LENGTH_SHORT).show()
+                    }
+                    .setNeutralButton(R.string.but_cancel, null)
+                    .show()
                 true
             }
         }
@@ -93,6 +104,8 @@ class NoteFragment : Fragment() {
             showLandInfo(position)
         }
         else showPortInfo(position)
+
+
 
     }
     private fun showPortInfo(position :Int){
@@ -110,4 +123,5 @@ class NoteFragment : Fragment() {
         fragmentTransaction.replace(R.id.fragment_infocontainer, infoNote)
         fragmentTransaction.commit()
     }
+
 }

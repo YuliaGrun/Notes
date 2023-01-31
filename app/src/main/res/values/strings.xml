@@ -10,6 +10,11 @@
     <string name="receive">Переслать</string>
     <string name="exit">Выход</string>
     <string name="user">Пользователь</string>
+    <string name="title_del">Удаление записи</string>
+    <string name="del_quest">Вы действительно хотите удалить запись?</string>
+    <string name="but_yes">Да</string>
+    <string name="but_no">Нет</string>
+    <string name="but_cancel">Отмена</string>
 
 
 </resources>
